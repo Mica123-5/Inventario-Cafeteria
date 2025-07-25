@@ -17,12 +17,24 @@ class Inventario:
         with open (archivo, "w") as f:
             json.dump(self.ingredientes , f, indent=4)  #json.dump función que escribe datos en formato JSON dentro de un archivo.
                                                        #indent=4 4 espacis de sangria
-    def agregar_ingredientes (self, nombre, cantidad, unidad, minimo, precio):
+    def agregar_ingredientes (self, nombre, cantidad, unidad, minimo):
+        unidad= unidad.lower()
+        if unidad in ["kg", "kilo","kilos"]:
+            cantidad *= 1000
+            minimo *= 1000
+            unidad = "g"
+        elif unidad in ["l","litro","litros"]:
+            cantidad *= 1000
+            minimo *= 1000
+            unidad= "ml"
+        elif unidad not in ["g","ml"]:
+            print("Unidad no valida. Solo se permite 'g' o 'ml'.")
+            return
+        
         self.ingredientes[nombre]= {
             "cantidad": cantidad,
             "unidad": unidad,
             "minimo":minimo,
-            "precio": precio
         }
         self.guardar_ingredientes()
         
@@ -44,7 +56,7 @@ class Inventario:
     # Si hay stock suficiente, lo descontamos
         for ingrediente, cantidad_necesaria in receta.items():
             self.ingredientes[ingrediente]["cantidad"] -= cantidad_necesaria
-        self.guardar_igredientes()
+        self.guardar_ingredientes()
         return True
        
     def menu(self):
@@ -80,7 +92,7 @@ class Inventario:
                 precio = int(input("Precio por unidad: "))
                 self.agregar_ingredientes(nombre,cantidad,unidad,minimo,precio)
             
-            elif opcion == "4":
+            elif opcion == "3":
                 from productos import Productos
                 productos = Productos()
                 productos.mostrar_productos()
@@ -88,11 +100,12 @@ class Inventario:
                 receta = productos.obtener_receta(elegido)
                 if receta:
                     exito = self.descontar_ingredientes(receta)
-                if exito:
-                    print(f"Venta de '{elegido}' registrada con éxito.")
+                    if exito:
+                        print(f"Venta de '{elegido}' registrada con éxito.")
+                    else:
+                        print("No hay suficiente stock para vender el producto.")
                 else:
-                    print("Producto no encontrado.")
-
+                    print("Producto no encontrado")
             elif opcion =="4":
                 print("Saliendo del sistema.")
                 break
