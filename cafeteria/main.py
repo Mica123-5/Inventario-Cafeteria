@@ -2,14 +2,23 @@ from inventario import Inventario
 from productos import Productos
 from ventas import Ventas
 
+
+def mostrar_titulo():
+    print("""
+=========================================
+     SISTEMA DE VENTAS - CAFETERÍA  
+==========================================
+""")
+
 def main():
     inventario = Inventario()
     productos= Productos(inventario=inventario)
     ventas= Ventas()
+    mostrar_titulo()
     
     
     while True:
-        print ("========SISTEMA CAFETERIA========")
+        print ("----------SISTEMA CAFETERIA-------")
         print("1. Gestionar ingredientes")
         print("2. Gestionar productos")
         print("3. Registrar venta de productos")

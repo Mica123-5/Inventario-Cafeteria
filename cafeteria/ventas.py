@@ -32,6 +32,7 @@ class Ventas:
         self.ventas.append(venta)
         self.guardar_ventas()
         self.generar_ticket(venta)
+        self.exportar_ticket_txt(venta)
         
 
     def registrar_ventas_multiples(self, lista_productos):
@@ -65,6 +66,7 @@ class Ventas:
             }
         self.ventas.append(venta)
         self.guardar_ventas()
+        self.exportar_ticket_txt(venta, multiple=True)
 
     def generar_ticket(self, venta):
         print("\n======== TICKET DE VENTA CAFETERÍA ========")
@@ -74,3 +76,28 @@ class Ventas:
         print(f"Total: ${venta['total']:.2f}")
         print(f"Fecha: {venta['fecha']}")
         print("==================================\n")
+        
+    def exportar_ticket_txt(self, venta, multiple=False):
+        carpeta_tickets = os.path.join(os.path.dirname(__file__), "tickets")
+        os.makedirs(carpeta_tickets, exist_ok=True)
+    #formatear nombre del archivo
+        fecha_archivo = venta['fecha'].replace(":", "-").replace(" ", "_")
+        nombre_archivo = f"ticket_{fecha_archivo}.txt"
+        ruta_completa = os.path.join(carpeta_tickets, nombre_archivo)
+
+
+        with open(nombre_archivo, "w") as f:
+            f.write("======== TICKET DE VENTA CAFETERÍA ========\n")
+            if multiple:
+                for item in venta["productos"]:
+                    f.write(f"\nProducto: {item['nombre']}\n")
+                    f.write(f"Precio unitario: ${item['precio']:.2f}\n")
+                    f.write(f"Cantidad: {item['cantidad']}\n")
+                    f.write(f"Subtotal: ${item['precio'] * item['cantidad']:.2f}\n")
+            else:
+                f.write(f"\nProducto: {venta['producto']}\n")
+                f.write(f"Precio unitario: ${venta['precio_unitario']:.2f}\n")
+                f.write(f"Cantidad: {venta['cantidad']}\n")
+            f.write(f"\nTotal: ${venta['total']:.2f}\n")
+            f.write(f"Fecha: {venta['fecha']}\n")
+            f.write("===========================================\n")

@@ -1,26 +1,26 @@
 {
     "cafe": {
-        "cantidad": 800.0,
+        "cantidad": 600.0,
         "unidad": "g",
         "minimo": 100
     },
     "leche": {
-        "cantidad": 11000.0,
+        "cantidad": 10200.0,
         "unidad": "ml",
         "minimo": 5000.0
     },
     "harina": {
-        "cantidad": 750.0,
+        "cantidad": 550.0,
         "unidad": "g",
         "minimo": 300
     },
     "azucar": {
-        "cantidad": 383.3333333333333,
+        "cantidad": 283.3333333333333,
         "unidad": "g",
         "minimo": 100
     },
     "huevo": {
-        "cantidad": 200.0,
+        "cantidad": 150.0,
         "unidad": "g",
         "minimo": 100
     },

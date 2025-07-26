@@ -80,5 +80,27 @@
         ],
         "total": 1600.0,
         "fecha": "2025-07-26 04:15:56"
+    },
+    {
+        "productos": [
+            {
+                "nombre": "torta",
+                "cantidad": 4,
+                "precio": 800.0
+            }
+        ],
+        "total": 3200.0,
+        "fecha": "2025-07-26 11:46:00"
+    },
+    {
+        "productos": [
+            {
+                "nombre": "cafe con leche",
+                "cantidad": 4,
+                "precio": 600.0
+            }
+        ],
+        "total": 2400.0,
+        "fecha": "2025-07-26 11:51:56"
     }
 ]
