@@ -2,9 +2,20 @@ from inventario import Inventario
 from productos import Productos
 from ventas import Ventas
 
+from colorama import Fore, Style, init
+init(autoreset=True)
 
+def print_aviso(texto):
+    print(Fore.YELLOW + texto)
+def print_error(texto):
+    print(Fore.RED + texto)
+def print_ok(texto):
+    print(Fore.GREEN + texto)
+
+def pausar():
+    input(Fore.CYAN + "\nPresioná ENTER para continuar...")
 def mostrar_titulo():
-    print("""
+    print(Fore.CYAN + """
 =========================================
      SISTEMA DE VENTAS - CAFETERÍA  
 ==========================================
@@ -15,10 +26,11 @@ def main():
     productos= Productos(inventario=inventario)
     ventas= Ventas()
     mostrar_titulo()
+
     
     
     while True:
-        print ("----------SISTEMA CAFETERIA-------")
+        print (Fore.BLUE + "\n----------SISTEMA CAFETERIA-------")
         print("1. Gestionar ingredientes")
         print("2. Gestionar productos")
         print("3. Registrar venta de productos")
@@ -29,8 +41,12 @@ def main():
         
         if opcion == "1":
             inventario.menu_ingredientes()
+            pausar()
+            
         elif opcion == "2":
             productos.menu()
+            pausar()
+            
         elif opcion == "3":
             productos_vendidos=[]
             while True:
@@ -39,7 +55,7 @@ def main():
                 receta= productos.obtener_receta(nombre)
             
                 if not receta:
-                    print("Producto no encontrado.")
+                    print_error("Producto no encontrado.")
                     continue
             
                 rinde = productos.productos[nombre].get("rinde", 1)   
@@ -54,19 +70,22 @@ def main():
                             "cantidad": cantidad_vendida,
                             "precio": precio
                         })
+                        print_ok("Producto agregado correctamente.")
                     else:
-                        print("No hay suficientes ingredientes.")
+                        print_error("No hay suficientes ingredientes.")
                 except ValueError:
-                    print("Cantidad inválida. ") 
+                    print_error("Cantidad inválida. ") 
                 seguir = input("¿Desea agregar otro producto a esta venta? (si/no): ").strip().lower()
                 if seguir != "si":
                     break
             if productos_vendidos:
                 ventas.registrar_ventas_multiples(productos_vendidos)
+                print_ok("Venta registrada con exito.")
+                pausar()
         
         elif opcion == "4":
             if ventas.ventas:
-                print("\n======== HISTORIAL DE VENTAS ========")
+                print(Fore.CYAN + "\n======== HISTORIAL DE VENTAS ========")
                 for i, venta in enumerate(ventas.ventas, 1):
                     print(f"\n--- Venta {i} ---")
                     if "productos" in venta:
@@ -83,13 +102,15 @@ def main():
                     print(f"Fecha: {venta['fecha']}")
                 print("=====================================\n")
             else:
-                print("No hay ventas registradas.")
+                print_aviso("No hay ventas registradas.")
+            pausar()
 
         elif opcion == "5":
-            print("Saliendo...")
+            print_ok("Saliendo...")
             break
         else:
-            print("Opción inválida.")
+            print_error("Opción inválida.")
+            pausar()
                 
                     
 if __name__=="__main__":
