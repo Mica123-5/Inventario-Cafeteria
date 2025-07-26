@@ -1,0 +1,36 @@
+{
+    "cafe con leche": {
+        "ingredientes": {
+            "cafe": 50,
+            "leche": 200
+        },
+        "precio_unitario": 600.0,
+        "rinde": 1
+    },
+    "torta": {
+        "ingredientes": {
+            "harina": 200,
+            "azucar": 100,
+            "huevo": 50
+        },
+        "precio_unitario": 800.0,
+        "rinde": 4
+    },
+    "galletas": {
+        "ingredientes": {
+            "harina": 150,
+            "azucar": 50,
+            "manteca": 100
+        },
+        "precio_unitario": 300.0,
+        "rinde": 6
+    },
+    "chocolatada": {
+        "ingredientes": {
+            "leche": 500.0,
+            "chocolate": 25.0
+        },
+        "precio_unitario": 500.0,
+        "rinde": 1
+    }
+}

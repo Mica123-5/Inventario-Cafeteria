@@ -1,0 +1,42 @@
+{
+    "cafe": {
+        "cantidad": 800.0,
+        "unidad": "g",
+        "minimo": 100
+    },
+    "leche": {
+        "cantidad": 11000.0,
+        "unidad": "ml",
+        "minimo": 5000.0
+    },
+    "harina": {
+        "cantidad": 750.0,
+        "unidad": "g",
+        "minimo": 300
+    },
+    "azucar": {
+        "cantidad": 383.3333333333333,
+        "unidad": "g",
+        "minimo": 100
+    },
+    "huevo": {
+        "cantidad": 200.0,
+        "unidad": "g",
+        "minimo": 100
+    },
+    "manteca": {
+        "cantidad": 966.6666666666666,
+        "unidad": "g",
+        "minimo": 100
+    },
+    "chips chocolte": {
+        "cantidad": 6000.0,
+        "unidad": "g",
+        "minimo": 2000.0
+    },
+    "chocolate": {
+        "cantidad": 2950.0,
+        "unidad": "g",
+        "minimo": 500.0
+    }
+}
