@@ -19,6 +19,12 @@ class Ventas:
             json.dump(self.ventas, f, indent=4)
             
     def registrar_venta(self, producto, cantidad, precio_unitario):
+        from tkinter import messagebox
+        # Verificar disponibilidad antes de vender
+        if not self.productos.verificar_disponibilidad(producto, cantidad, self.inventario.ingredientes):
+            messagebox.showerror("Error", "No hay suficiente stock para realizar la venta.")
+            return
+
         total = round(precio_unitario * cantidad,2)
         fecha= datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         venta= {
@@ -31,6 +37,18 @@ class Ventas:
         
         self.ventas.append(venta)
         self.guardar_ventas()
+        
+        #descontar ingredientes del inventario
+        receta = self.productos.obtener_receta(producto)
+        rinde = self.productos.productos[producto]["rinde"]
+        ingredientes_usados = {}
+
+        for ing, cant in receta.items():
+            total_utilizado = (cant / rinde) * cantidad
+            ingredientes_usados[ing] = total_utilizado
+
+        self.inventario.descontar_ingredientes(ingredientes_usados)
+        
         self.generar_ticket(venta)
         self.exportar_ticket_txt(venta)
         

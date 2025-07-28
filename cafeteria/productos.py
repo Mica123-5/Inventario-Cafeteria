@@ -109,3 +109,27 @@ class Productos:
 
             else:
                 print("Opción no válida.")
+        def verificar_disponibilidad(self, nombre_prod, cantidad, ingredientes_stock):
+            
+            if nombre_prod not in self.productos:
+                return False
+
+            producto = self.productos[nombre_prod]
+            receta = producto["ingredientes"]
+            rinde = producto.get("rinde", 1)
+
+            for ingr, cantidad_total_receta in receta.items():
+                cantidad_necesaria = (cantidad_total_receta / rinde) * cantidad
+                disponible = 0.0
+
+                if ingr in ingredientes_stock:
+                    stock = ingredientes_stock[ingr]
+                    if isinstance(stock, dict):
+                        disponible = stock.get("cantidad", 0.0)
+                    elif isinstance(stock, (int, float)):
+                        disponible = stock
+
+                if disponible < cantidad_necesaria:
+                    return False
+
+            return True

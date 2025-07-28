@@ -1,0 +1,7 @@
+{
+    "leche": {
+        "cantidad": 600000.0,
+        "unidad": "ml",
+        "minimo": 12000.0
+    }
+}

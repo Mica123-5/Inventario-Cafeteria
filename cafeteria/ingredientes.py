@@ -44,7 +44,7 @@ class Ingredientes:
         for nombre, datos in self.ingredientes.items():
             print(f"{nombre}: {datos['cantidad']} {datos['unidad']} (mínimo: {datos['minimo']})")
 
-    def descontar_ingredientes(self, receta, rinde=1):
+    def descontar_ingredientes(self, receta, rinde=1, mostrar_alerta=False):
         for ingr, cant in receta.items():
             total = cant / rinde
             if ingr not in self.ingredientes:
@@ -57,4 +57,13 @@ class Ingredientes:
             total = cant / rinde
             self.ingredientes[ingr]["cantidad"] -= total
         self.guardar_ingredientes()
+        
+        if mostrar_alerta:
+            from tkinter import messagebox
+            for ingr, datos in self.ingredientes.items():
+                if datos["cantidad"]<= datos.get("minimo", 0):
+                    messagebox.showwarning("¡Stock bajo!", f"El stock de '{ingr}' esta por debajo del minimo ({datos['cantidad']} {datos['unidad']})")
+                    
+            
         return True
+

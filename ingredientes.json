@@ -5,14 +5,14 @@
         "minimo": 100
     },
     "leche": {
-        "cantidad": 10200.0,
+        "cantidad": 9200.0,
         "unidad": "ml",
         "minimo": 5000.0
     },
     "harina": {
-        "cantidad": 550.0,
+        "cantidad": 2700.0,
         "unidad": "g",
-        "minimo": 300
+        "minimo": 500.0
     },
     "azucar": {
         "cantidad": 283.3333333333333,
@@ -20,14 +20,14 @@
         "minimo": 100
     },
     "huevo": {
-        "cantidad": 150.0,
+        "cantidad": 135.0,
         "unidad": "g",
         "minimo": 100
     },
     "manteca": {
-        "cantidad": 966.6666666666666,
+        "cantidad": 2000.0,
         "unidad": "g",
-        "minimo": 100
+        "minimo": 500.0
     },
     "chips chocolte": {
         "cantidad": 6000.0,
@@ -35,7 +35,22 @@
         "minimo": 2000.0
     },
     "chocolate": {
-        "cantidad": 2950.0,
+        "cantidad": 2900.0,
+        "unidad": "g",
+        "minimo": 500.0
+    },
+    "cacao": {
+        "cantidad": 5000.0,
+        "unidad": "g",
+        "minimo": 500.0
+    },
+    "limones": {
+        "cantidad": 6000.0,
+        "unidad": "ml",
+        "minimo": 2000.0
+    },
+    "miel": {
+        "cantidad": 2000.0,
         "unidad": "g",
         "minimo": 500.0
     }
